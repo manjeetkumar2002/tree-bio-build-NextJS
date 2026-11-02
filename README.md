@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<!-- NextJS Installation -->
+npx create-next-app@latest
+<!-- Shadcn UI Installation -->
+npx shadcn@latest init
+<!-- shadcn components Installation  -->
+npx shadcn@latest add
+press a and then enter to add all components
 
-## Getting Started
+<!-- prisma setup -->
+npx prisma init
 
-First, run the development server:
+<!-- eg prisma/schema.prisma -->
+generator client {
+  provider = "prisma-client-js"
+}
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+model User {
+  id    Int    @id @default(autoincrement())
+  name  String
+  email String @unique
+  age   Int?
+}
+<!-- we communicate with our database with the help of prisma client  -->
+ npm i @prisma/client
+<!-- prisma code conversion to postgresql queries code -->
+npx prisma migrate dev --name <migration-name>
+<!-- push the user model to database -->
+npx prisma db push
+<!-- neon postgress db creation -->
+1.login with github on https://console.neon.tech/app/projects/rough-cloud-53617953/branches/br-polished-brook-b4s3xf8d?database=neondb
+2.create a project
+3.press on connect and copy the db url and store it in .env
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<!-- Clerk auth installation -->
+ npm install @clerk/nextjs
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<!-- prisma 7 installation -->
+npm install -D prisma@7
+npm install @prisma/client@7
